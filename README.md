@@ -1,22 +1,32 @@
-# 🌱 SIBOL — Smart Agricultural Decision-Support for Laguna Farmers
+# Sibol by Wayfinders
 
-**SIBOL** is an interactive, bilingual (English / Filipino) web application designed to help farmers, agricultural students, and local growers across Laguna make data-driven planting and crop management decisions.
+Sibol is a bilingual (English / Filipino) web app built to help local farmers and growers in Laguna choose the right crops and check local conditions before planting. 
 
-## Key Features
+Instead of jumping between different websites, farmers can enter their municipality, water source, and farming goals to get crop matches, view the 7-day weather and rainfall forecast, inspect satellite maps, and access official Department of Agriculture tools and market prices in one place.
 
-* **Municipality-Specific Crop Recommendations:** Tailored crop matching based on your Laguna municipality, soil conditions, water source, and farming priorities.
-* **Live Weather & Rainfall Analytics:** Real-time 7-day forecasts and dynamic rainfall charts powered by **Open-Meteo**.
-* **Interactive Satellite Monitoring:** High-definition satellite mapping integrated with **NASA GIBS** environmental layers to inspect land and vegetation conditions.
-* **Official Agricultural Directory & Market Access:** Direct links to verified government agencies and tools—including **DA-CALABARZON**, **ATI**, **FAES Laguna**, **Bureau of Plant Industry**, **UPLB NCPC**, **RSBSA Finder**, **DA Geo Camera**, and live crop market prices.
-* **Built-In Guided Tour & Feedback System:** Step-by-step interactive walkthrough for first-time users and direct feedback submission to the development team.
+## What's Inside
 
-## 🛠️ Technologies Used
+- **Crop Matcher:** Recommends crops tailored to your Laguna municipality, water availability, and priorities.
+- **Local Weather & Rainfall:** Live 7-day forecasts and rainfall charts powered by Open-Meteo.
+- **Satellite View:** High-definition satellite maps with NASA GIBS environmental layers.
+- **Farmer Resources & Market Prices:** Quick links to DA-CALABARZON, ATI, FAES Laguna, Bureau of Plant Industry, UPLB NCPC, RSBSA Finder, DA Geo Camera, and current crop market prices.
+- **Guided Tour & Feedback:** Built-in walkthrough for new visitors and a direct feedback form powered by Web3Forms.
 
-* **Frontend:** HTML5, CSS3, Vanilla JavaScript
-* **Weather Data:** [Open-Meteo API](https://open-meteo.com/)
-* **Satellite & Earth Observation:** NASA GIBS & Satellite Map Tiles
-* **Feedback Integration:** [Web3Forms](https://web3forms.com/)
+## Built With
 
-## 🙏 Acknowledgements
+- HTML, CSS, and JavaScript
+- Open-Meteo (Weather data)
+- NASA GIBS & Satellite Map Tiles (Earth observation)
+- Web3Forms (Feedback form)
 
-Special thanks to **Mrs. Irish Joy Molina Magtagñob** and **Earl Justine Chavez** for their agricultural expertise, guidance, and support in shaping this platform for local farmers.
+## Team Wayfinders
+
+- Jasmine Chavez
+- Samantha Lim
+- Lara Cinco
+- Alonzo Co
+- Matthew Ly
+
+## Acknowledgements
+
+Thank you to **Mrs. Irish Joy Molina Magtagñob** and **Earl Justine Chavez** for sharing their agricultural knowledge and guiding us in building this project for Laguna farmers.
