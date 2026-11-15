@@ -263,6 +263,7 @@ details.acc[open]>:not(summary){animation:fadeIn .3s ease}
 #tool .dk input,#tool .dk select{min-height:38px;padding:7px 10px}
 .dkbtns{display:flex;gap:10px;margin-top:12px}
 .dkbtns .btn,.dkbtns .btn.alt{margin:0;flex:1;padding:11px 12px}
+#svm{margin:4px 0 0!important;font-size:12px}
 .chartbox{padding:10px 16px 8px;border-radius:20px;display:flex;flex-direction:column}
 .chartbox .bars h3{margin:0 0 4px!important;font-size:16px}
 .chartbox .bars svg{display:block;width:100%;height:auto}
@@ -316,39 +317,6 @@ details.acc[open]>:not(summary){animation:fadeIn .3s ease}
 #map{height:clamp(280px,46vh,480px);background:#273822}
 .about-grid{width:min(1100px,calc(100% - 10vw));margin:24px auto;padding:40px 4vw;background:#FEF9E7;border-radius:26px;box-shadow:0 14px 36px rgba(0,0,0,.28);align-items:center}
 @media(max-width:820px){.about-grid{padding:30px 6vw;width:calc(100% - 8vw)}#about,#slide3,#slide4{padding-bottom:84px}#slide3 .wrap,#slide4 .wrap{width:calc(100% - 8vw)}}
-
-/* ===== v7: single-button crop form + in-map NASA GIBS info drawer ===== */
-.dkbtns .btn{width:100%}
-.mapwrap{position:relative;border-radius:20px;overflow:hidden}
-.mapwrap #map{height:clamp(300px,50vh,500px);box-shadow:none}
-.mapinfo-btn{position:absolute;top:10px;right:10px;z-index:6;display:flex;align-items:center;gap:4px;max-width:calc(100% - 70px);padding:9px 14px;min-height:40px;border:2px solid var(--forest);border-radius:999px;background:rgba(254,249,231,.95);color:var(--forest);font:600 13.5px/1.2 inherit;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:opacity .2s}
-.mapinfo-btn:hover{background:#fff}.mapinfo-btn.hide{opacity:0;pointer-events:none}
-.mapinfo-btn span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.maplegend{position:absolute;left:10px;bottom:24px;z-index:5;display:flex;flex-direction:column;gap:3px;max-width:min(240px,60%);padding:8px 10px;border-radius:12px;background:rgba(254,249,231,.93);color:var(--brown);font-size:12px;line-height:1.3;box-shadow:0 4px 14px rgba(0,0,0,.22)}
-.maplegend[hidden]{display:none}
-.maplegend b{font-size:12.5px;color:var(--forest)}
-.maplegend span,.idleg li{display:flex;align-items:center;gap:7px}
-.maplegend i,.idleg i{flex:none;width:14px;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.25)}
-.infodrawer{position:absolute;z-index:7;top:10px;right:10px;bottom:10px;width:min(350px,calc(100% - 20px));display:flex;flex-direction:column;border-radius:16px;background:rgba(254,249,231,.97);color:var(--brown);box-shadow:0 10px 30px rgba(0,0,0,.35);transform:translateX(calc(100% + 24px));visibility:hidden;transition:transform .28s ease,visibility 0s .28s}
-.infodrawer.open{transform:none;visibility:visible;transition:transform .28s ease}
-.idh{display:flex;align-items:flex-start;gap:8px;padding:12px 12px 6px 16px}
-.idt{flex:1;font-weight:700;font-size:15.5px;line-height:1.3;color:var(--forest)}
-.idx{flex:none;width:34px;height:34px;border:0;border-radius:50%;background:transparent;color:var(--brown);font-size:24px;line-height:1;cursor:pointer}.idx:hover{background:rgba(0,0,0,.08)}
-.idtabs{display:flex;flex-wrap:wrap;gap:5px;padding:2px 14px 8px}
-.idtabs button{padding:5px 10px;border:1.5px solid var(--line);border-radius:999px;background:#fff;color:var(--brown);font:600 12px/1.2 inherit;cursor:pointer}
-.idtabs button.on{background:var(--forest);border-color:var(--forest);color:#FEF9E7}
-.idtabs button.live::after{content:" ●";font-size:9px;color:var(--olive)}.idtabs button.on.live::after{color:#c9e29a}
-.idbody{flex:1;overflow:auto;padding:0 16px 14px;font-size:13.5px;line-height:1.5}
-.idbody h4{margin:10px 0 2px;font:700 12px/1.3 inherit;letter-spacing:.5px;text-transform:uppercase;color:var(--forest)}
-.idbody p{margin:0}
-.idleg{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:5px}
-.idtip{margin-top:12px;padding:9px 11px;border-left:4px solid var(--olive);border-radius:8px;background:var(--tint)}
-@media(max-width:700px){
- .mapwrap #map{height:clamp(360px,62vh,520px)}
- .infodrawer{top:auto;left:10px;right:10px;bottom:10px;width:auto;max-height:78%;transform:translateY(calc(100% + 24px))}
- .infodrawer.open{transform:none}
-}
-@media(prefers-reduced-motion:reduce){.infodrawer,.infodrawer.open{transition:none}}
 </style></head><body>
 <header>
  <a class="logo" href="#home"><svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 38V18" stroke="currentColor" stroke-width="3" fill="none"/><path d="M20 22C8 22 6 12 8 8c9 0 13 5 12 14zM20 18c0-9 5-13 12-13 1 7-3 13-12 13z" fill="currentColor"/></svg>SIBOL</a>
@@ -382,10 +350,11 @@ details.acc[open]>:not(summary){animation:fadeIn .3s ease}
   <div class="rcol">
    <div class="dk">
     <h2 data-i="crop"></h2>
+    <label data-i="nm"></label><input id="f-name" list="dl" autocomplete="off"><datalist id="dl"></datalist>
     <div class="two"><div><label data-i="last"></label><select id="f-last"></select></div><div><label data-i="hv"></label><input type="date" id="f-hv"></div></div>
-    <div class="two"><div><label data-i="ws"></label><select id="f-water"></select></div><div><label data-i="soil"></label><select id="f-soil"></select></div></div>
-    <label data-i="prio"></label><select id="f-prio"></select>
-    <div class="dkbtns"><button class="btn" id="give" data-i="give"></button></div>
+    <div class="two"><div><label data-i="sz"></label><input id="f-size" type="number" min="0" step="0.1"></div><div><label data-i="ws"></label><select id="f-water"></select></div></div>
+    <div class="two"><div><label data-i="soil"></label><select id="f-soil"></select></div><div><label data-i="prio"></label><select id="f-prio"></select></div></div>
+    <div class="dkbtns"><button class="btn" id="give" data-i="give"></button><button class="btn alt" id="sv" data-i="sv"></button></div><p class="note" id="svm" style="text-align:center"></p>
    </div>
    <div class="glass chartbox" id="chartbox" hidden><div id="bars" class="bars"></div></div>
   </div>
@@ -401,13 +370,7 @@ details.acc[open]>:not(summary){animation:fadeIn .3s ease}
  <div class="wrap" id="sat">
   <h1 data-i="satt" style="font-size:44px"></h1><p data-i="satd2"></p>
   <div class="ctl"><div><label data-i="satlb"></label><select id="satl" aria-label="NASA GIBS layer"></select></div><div><label data-i="satdt"></label><input type="date" id="satd"></div></div>
-  <div class="mapwrap">
-   <div id="map"></div>
-   <button type="button" class="mapinfo-btn" id="infoBtn" aria-expanded="false" aria-controls="infoDrawer"><span aria-hidden="true">ℹ</span><span id="infoBtnT"></span></button>
-   <div class="maplegend" id="mapLegend" hidden></div>
-   <aside class="infodrawer" id="infoDrawer" aria-hidden="true"></aside>
-  </div>
-  <p class="note" id="satn"></p>
+  <div id="map"></div><p class="note" id="satn"></p>
   <p class="note"><a href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener" data-i="satw"></a></p>
  </div>
 </section>
@@ -467,7 +430,7 @@ let R=[149,131,107,95,161,228,315,266,294,330,319,379],Q=[[82,223],[45,193],[47,
 T=[23.5,24,25.4,27.2,27.9,27.2,26.3,26.2,26.1,25.8,25.2,24.2],X=[29.8,31.2,33.3,35.4,35.6,33.9,32.3,31.9,32.2,31.4,30.4,29.6],H=[86,83,80,76,78,83,87,88,88,88,89,89];
 const DEF={R:R.slice(),Q:Q.map(a=>a.slice()),T:T.slice(),X:X.slice(),H:H.slice()};
 const MU="Alaminos|14.06|121.25|0;Bay|14.18|121.28|0;Biñan|14.34|121.08|1;Cabuyao|14.27|121.12|0;Calamba|14.21|121.17|1;Calauan|14.15|121.32|0;Cavinti|14.25|121.51|1;Famy|14.44|121.45|1;Kalayaan|14.33|121.56|1;Liliw|14.13|121.43|0;Los Baños|14.17|121.24|0;Luisiana|14.18|121.51|0;Lumban|14.30|121.46|1;Mabitac|14.43|121.43|1;Magdalena|14.20|121.43|0;Majayjay|14.15|121.47|0;Nagcarlan|14.14|121.41|0;Paete|14.36|121.48|1;Pagsanjan|14.27|121.46|0;Pakil|14.38|121.48|1;Pangil|14.40|121.46|1;Pila|14.23|121.36|0;Rizal|14.11|121.40|0;San Pablo|14.07|121.33|0;San Pedro|14.36|121.05|1;Santa Cruz|14.28|121.42|1;Santa Maria|14.47|121.43|1;Santa Rosa|14.31|121.11|1;Siniloan|14.42|121.45|1;Victoria|14.23|121.33|0".split(";").map(s=>{const a=s.split("|");return{n:a[0],la:a[1],lo:a[2],fl:+a[3]}});
-const REF=[["What Not to Plant Near Lettuce (The Spruce)","https://www.thespruce.com/what-not-to-plant-near-lettuce-11763220"],["Okra Companion Plants (The Spruce)","https://www.thespruce.com/companion-plants-for-okra-5074423"],["Eggplant Companion Plants (The Spruce)","https://www.thespruce.com/eggplant-companion-plants-7371513"],["Ampalaya Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Ampalaya.pdf"],["Ampalaya Production Guide Leaflet (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/ampalaya_production_guide_leaflet.pdf"],["Companions for Pole Beans (Gardenia)","https://www.gardenia.net/guide/best-worst-companions-for-pole-beans"],["Eggplant Companion Plants (Gardenia)","https://www.gardenia.net/guide/best-worst-eggplant-companion-plants-what-works"],["Bok Choy (Gardeners)","https://www.gardeners.com/blogs/gardening-encyclopedia/bok-choy-7191"],["Companion Planting (West Coast Seeds)","https://www.westcoastseeds.com/blogs/wcs-academy/companion-planting"],["Companion Planting Chart (Almanac)","https://www.almanac.com/companion-planting-guide-vegetables"],["Companion Planting Guide for Philippine Vegetable Gardens (Urban Goes Green)","https://urbangoesgreen.com/blog/companion-planting-guide-philippines/"],["Corn Pests and Diseases (DA-CAR)","https://car.da.gov.ph/wp-content/uploads/2023/06/CORN-Pests-and-Diseases.pdf"],["Corn Production: 9 Basic Steps (ATI)","https://ati2.da.gov.ph/ati-5/content/sites/default/files/users/user17/Corn%20Production%20%289%20Basic%20Steps%20for%20Bountiful%20Harvest%29.pdf"],["Corn Vegetable Integrated Farm System (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2023-01/corn-vegetable_integrated_farm_system.pdf"],["Eggplant Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Eggplant.pdf"],["Farmers’ Adoption of Organic Vegetable Production in Siniloan, Pangil and Kalayaan, Laguna","https://www.researchgate.net/publication/361504880_FARMERS_ADAPTION_OF_ORGANIC_VEGETABLE_PRODUCTION_IN_SINILOAN_PANGIL_AND_KALAYAAN_LAGUNA"],["Gabay sa Pagtatanim ng Kalabasa (ATI)","https://ati2.da.gov.ph/ati-4a/content/sites/default/files/2022-09/Gabay%20sa%20Pagtatanim%20ng%20Kalabasa.pdf"],["Growing Corn (EOS)","https://eos.com/blog/how-to-grow-corn/"],["How to Grow Lettuce at Home PH (Urban Goes Green)","https://urbangoesgreen.com/blog/how-to-grow-lettuce-at-home/"],["Increase Plant Productivity with Companion Planting (Agriculture.com.ph)","https://agriculture.com.ph/2020/05/18/increase-plant-productivity-with-companion-planting/"],["Lettuce Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Lettuce.pdf"],["NASA POWER Data Access Viewer","https://power.larc.nasa.gov/data-access-viewer/"],["Okra Production Guide (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/okra_production_flyer_.pdf"],["Okra Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Okra.pdf"],["OMLC State of the 2022 Philippine Climate (PAGASA)","https://pubfiles.pagasa.dost.gov.ph/pagasaweb/files/cad/CLIMATOLOGICAL%20PUBLICATIONS/OMLC%20State%20of%20the%202022%20Philippine%20Climate_.pdf"],["Pechay Production Guide (ATI 7)","https://ati2.da.gov.ph/ati-7/content/sites/default/files/users/user16/PECHAY%20final_2.pdf"],["Pechay Production for Urban Gardening Leaflet (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/pechay_production_for_urban_gardening_leaflet.pdf"],["Pepper Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Pepper.pdf"],["Squash Production Guide Leaflet (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/squash_production_guide_leaflet.pdf"],["Squash Farming Guide (Scribd)","https://www.scribd.com/document/422634069/Productionguide-Squash"],["String Beans (ATI 7)","https://ati2.da.gov.ph/ati-7/content/sites/default/files/users/user16/String%20Beans_FINAL2020.pdf"],["String Beans (PinoyRice)","https://www.pinoyrice.com/wp-content/uploads/stringbeans.pdf"],["NOAA Climate Prediction Center: ENSO Diagnostic Discussion","https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.html"]];
+const REF=[["Ampalaya Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Ampalaya.pdf"],["Ampalaya Production Guide Leaflet (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/ampalaya_production_guide_leaflet.pdf"],["ATI Central Office","https://ati2.da.gov.ph/ati-main/content/"],["Bok Choy (Gardeners)","https://www.gardeners.com/blogs/gardening-encyclopedia/bok-choy-7191"],["Calabaza - Wikipedia (Image)","https://en.wikipedia.org/wiki/Maize#/media/File:Klip_kukuruza_uzgojen_u_Me%C4%91imurju_(Croatia).JPG"],["Companions for Pole Beans (Gardenia)","https://www.gardenia.net/guide/best-worst-companions-for-pole-beans"],["DA GeoCamera (Image)","https://play.google.com/store/apps/details?id=com.da.advanced_geocamera"],["Companion Planting (West Coast Seeds)","https://www.westcoastseeds.com/blogs/wcs-academy/companion-planting"],["Companion Planting Chart (Almanac)","https://www.almanac.com/companion-planting-guide-vegetables"],["Companion Planting Guide for Philippine Vegetable Gardens (Urban Goes Green)","https://urbangoesgreen.com/blog/companion-planting-guide-philippines/"],["Corn Pests and Diseases (DA-CAR)","https://car.da.gov.ph/wp-content/uploads/2023/06/CORN-Pests-and-Diseases.pdf"],["Corn Production: 9 Basic Steps (ATI)","https://ati2.da.gov.ph/ati-5/content/sites/default/files/users/user17/Corn%20Production%20%289%20Basic%20Steps%20for%20Bountiful%20Harvest%29.pdf"],["Corn Vegetable Integrated Farm System (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2023-01/corn-vegetable_integrated_farm_system.pdf"],["Eggplant Companion Plants (Gardenia)","https://www.gardenia.net/guide/best-worst-eggplant-companion-plants-what-works"],["Eggplant Companion Plants (The Spruce)","https://www.thespruce.com/eggplant-companion-plants-7371513"],["Eggplant - Wikipedia (Image)","https://en.wikipedia.org/wiki/Eggplant#/media/File:Solanum_melongena_24_08_2012_(1).JPG"],["Eggplant Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Eggplant.pdf"],["FAES-OPAg Laguna (@faesopaglaguna) (Image)","https://www.facebook.com/faesopaglaguna/about/"],["Farmers’ Adoption of Organic Vegetable Production in Siniloan, Pangil and Kalayaan, Laguna","https://www.researchgate.net/publication/361504880_FARMERS_ADAPTION_OF_ORGANIC_VEGETABLE_PRODUCTION_IN_SINILOAN_PANGIL_AND_KALAYAAN_LAGUNA"],["Gabay sa Pagtatanim ng Kalabasa (ATI)","https://ati2.da.gov.ph/ati-4a/content/sites/default/files/2022-09/Gabay%20sa%20Pagtatanim%20ng%20Kalabasa.pdf"],["Green Beans - Wikipedia (Image)","https://en.wikipedia.org/wiki/Green_bean#/media/File:A_green_bean.jpg"],["Growing Corn (EOS)","https://eos.com/blog/how-to-grow-corn/"],["How to Grow Lettuce at Home PH (Urban Goes Green)","https://urbangoesgreen.com/blog/how-to-grow-lettuce-at-home/"],["IEC Materials · NCPC - UPLB","https://ncpc.cafs.uplb.edu.ph/resources/iec-materials/"],["Increase Plant Productivity with Companion Planting (Agriculture.com.ph)","https://agriculture.com.ph/2020/05/18/increase-plant-productivity-with-companion-planting/"],["Lettuce - Wikipedia (Image)","https://en.wikipedia.org/wiki/Lettuce#/media/File:Iceberg_lettuce_in_SB.jpg"],["Lettuce Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Lettuce.pdf"],["Maize - Wikipedia (Image)","https://en.wikipedia.org/wiki/Maize#/media/File:Klip_kukuruza_uzgojen_u_Me%C4%91imurju_(Croatia).JPG"],["Momordica - Wikipedia (Image)","https://en.wikipedia.org/wiki/Momordica#/media/File:Momordica_charantia_dsc07812.jpg"],["NOAA Climate Prediction Center: ENSO Diagnostic Discussion","https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.html"],["Official Portal of the Crop Pest Management Division","https://cpmd.buplant.da.gov.ph/"],["Okra - Wikipedia (Image)","https://en.wikipedia.org/wiki/Okra#/media/File:Hong_Kong_Okra_Aug_25_2012.JPG"],["Okra Companion Plants (The Spruce)","https://www.thespruce.com/companion-plants-for-okra-5074423"],["Okra Production Guide (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/okra_production_flyer_.pdf"],["Okra Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Okra.pdf"],["OMLC State of the 2022 Philippine Climate (PAGASA)","https://pubfiles.pagasa.dost.gov.ph/pagasaweb/files/cad/CLIMATOLOGICAL%20PUBLICATIONS/OMLC%20State%20of%20the%202022%20Philippine%20Climate_.pdf"],["Pechay Production Guide (ATI 7)","https://ati2.da.gov.ph/ati-7/content/sites/default/files/users/user16/PECHAY%20final_2.pdf"],["Pechay Production for Urban Gardening Leaflet (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/pechay_production_for_urban_gardening_leaflet.pdf"],["Pepper Production Guide (DA-RFO 2)","https://cagayanvalley.da.gov.ph/wp-content/uploads/2018/02/Pepper.pdf"],["Petsay - Wikipedia (Image)","https://tl.wikipedia.org/wiki/Petsay#/media/Talaksan:Napa_cabbages.png"],["RSBSA Finder","https://finder-rsbsa.da.gov.ph/"],["Siling labuyo - Wikipedia (Image)","https://en.wikipedia.org/wiki/Siling_labuyo#/media/File:Siling_labuyo.jpg"],["Squash Production Guide Leaflet (ATI)","https://ati2.da.gov.ph/ati-car/content/sites/default/files/2022-12/squash_production_guide_leaflet.pdf"],["Squash Farming Guide (Scribd)","https://www.scribd.com/document/422634069/Productionguide-Squash"],["String Beans (ATI 7)","https://ati2.da.gov.ph/ati-7/content/sites/default/files/users/user16/String%20Beans_FINAL2020.pdf"],["String Beans (PinoyRice)","https://www.pinoyrice.com/wp-content/uploads/stringbeans.pdf"],["Vulnerability Assessment to Climate Change of Households from Mabacan, Sta. Cruz and Balanac Watersheds in Laguna, Philippines.","https://journals.uplb.edu.ph/index.php/JESAM/article/download/151/133"],["What Not to Plant Near Lettuce (The Spruce)","https://www.thespruce.com/what-not-to-plant-near-lettuce-11763220"]];
 const A=[0,1,2,3,4,5,6,7,8,9,10,11],C=[
 {id:"eggplant",e:"Eggplant",f:"Talong",m:[9,10,11,0],d:"90-120",w:2,p:1,s:["loam"],ph:"5.5-6.8",h:1,fg:0,tg:["solanaceous"],nx:[],av:["brassica"],pe:"Fruit and shoot borer",tp:"Remove infested shoots.",v:"Dumaguete Long Purple, Morena F1, Casino F1, Sikat F1",r:[14,2,6]},
 {id:"corn",e:"Corn",f:"Mais",m:[4,5,9,10],d:"95-110",w:2,p:3,s:["loam"],ph:"6.0-7.2",h:1,fg:0,tg:["cereal"],nx:["legume","cucurbit"],av:["solanaceous","brassica"],pe:"Corn borer, white grub, seedling maggot, cutworm, armyworm, earworm, aphids, thrips, planthopper, maize weevil",tp:"Do shallow cultivation or off-barring 14 days after planting to control weeds; avoid damaging the plants.",v:"DEKALB 8282S, NK8840, NK306, Pioneer 3585, Evo 709",r:[11,12,17,13]},
@@ -544,7 +507,7 @@ function applyLang(){
  $("#r-ag").innerHTML=card(RES.ag,"ag");$("#r-ap").innerHTML=card(RES.ap,"ap");$("#r-pd").innerHTML=card(RES.pd,"pd");
  $("#acks").innerHTML=ACK.map(x=>`<li>${x[1]?`<a href="${x[1]}" target="_blank" rel="noopener"><b>${x[0]}</b></a>`:`<b>${x[0]}</b>`}: ${L(x[2],x[3])}</li>`).join("");
  $("#refs").innerHTML=REF.map(r=>`<li><a href="${r[1]}" target="_blank" rel="noopener">${r[0]}</a></li>`).join("");
- if(mu)paint();if(shown)recommend();FB.relabel();Tour.refresh();renderSat();satNote();renderInfo();renderDS();
+ if(mu)paint();if(shown)recommend();FB.relabel();renderNames();Tour.refresh();renderSat();satNote();renderDS();
 }
 const SLIDES=["home","tool","sat","resources","about"];let curPage="home";
 const hh=()=>document.querySelector("header").offsetHeight;
@@ -646,13 +609,20 @@ function recommend(){
   <div>${pic((AS.plants[c.id]||{}).img,nm(c),"pic")}${(AS.plants[c.id]||{}).credit?`<small>source: ${AS.plants[c.id].credit}</small>`:""}</div></div>`});
  if(no.length)h+=`<div class="card"><h3>${L("Not recommended now","Hindi muna inirerekomenda")}</h3><ul>${no.map(([c,x])=>`<li><b>${nm(c)}</b>: ${x}</li>`).join("")}</ul></div>`;
  h+=`<p class="note">${L("Advice is a guide based on the sources listed. Confirm with your Provincial Agriculturist or DA office before major decisions.","Gabay lamang ito batay sa mga nakalistang sanggunian. Kumonsulta sa Provincial Agriculturist o DA bago magdesisyon.")}</p>`;
- $("#out").innerHTML=h;$("#results").hidden=false;$("#out").scrollIntoView({behavior:"smooth"});
+ $("#out").innerHTML=h;$("#results").hidden=false;save(true);$("#out").scrollIntoView({behavior:"smooth"});
 }
 $("#give").onclick=recommend;
 /* ===== TUTORIAL TEXT + SAVED INPUTS + TOUR ===== */
-Object.assign(D.en,{tut:"Tutorial",c1:"Laguna municipalities",c2:"Crops covered",c3:"Years of NASA climate data"});
-Object.assign(D.fil,{tut:"Tutorial",c1:"Bayan sa Laguna",c2:"Mga pananim",c3:"Taon ng datos ng NASA"});
+Object.assign(D.en,{tut:"Tutorial",c1:"Laguna municipalities",c2:"Crops covered",c3:"Years of NASA climate data",nm:"Profile name (type an existing one to load it)",sz:"Field size in hectares (optional)",sv:"Save my inputs"});
+Object.assign(D.fil,{tut:"Tutorial",c1:"Bayan sa Laguna",c2:"Mga pananim",c3:"Taon ng datos ng NASA",nm:"Pangalan ng profile (i-type ang dati na para i-load)",sz:"Laki ng bukid sa ektarya (opsyonal)",sv:"I-save ang sagot ko"});
 const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+const prof=()=>{try{return JSON.parse(ls("sb_p")||"{}")}catch(e){return{}}};
+const ids=["last","hv","size","water","soil","prio"];
+function renderNames(){$("#dl").innerHTML=Object.keys(prof()).map(n=>`<option value="${n}">`).join("")}
+function save(quiet){const n=$("#f-name").value.trim();if(!n){if(!quiet)$("#svm").textContent=L("Type a profile name first.","Maglagay muna ng pangalan ng profile.");return}
+ const p=prof();p[n]={};ids.forEach(k=>p[n][k]=$("#f-"+k).value);ls("sb_p",JSON.stringify(p));renderNames();$("#svm").textContent=L("Saved on this device ✓","Na-save sa device na ito ✓")}
+$("#sv").onclick=()=>save(false);
+$("#f-name").onchange=e=>{const p=prof()[e.target.value.trim()];if(p){ids.forEach(k=>{if(p[k]!==undefined)$("#f-"+k).value=p[k]});$("#svm").textContent=L("Profile loaded ✓","Na-load ang profile ✓")}};
 const Tour=(()=>{
  const KEY="sb_tour",V=2;
  const S=[
@@ -666,7 +636,7 @@ const Tour=(()=>{
  {r:"tool",t:"#give",click:1,en:"Press “Give Recommendation” now.",fil:"Pindutin na ang “Give Recommendation”."},
  {r:"tool",t:"#out .rec",wait:5000,en:"Your recommended crop appears here, with reasons and references. Keep scrolling to see more.",fil:"Dito makikita ang inirerekomendang tanim, kasama ang paliwanag at mga sanggunian. Mag-scroll pa para sa iba."},
  {r:"sat",t:"#sat .ctl",en:"Satellite section: choose a NASA GIBS layer (crop greenness, rainfall, or ground heat) and a date to overlay on the map. Pick “None” to see only the HD satellite photo.",fil:"Seksyon ng Satelayt: pumili ng layer ng NASA GIBS (berde ng pananim, ulan, o init ng lupa) at petsa na ipapatong sa mapa. Piliin ang “Wala” para HD na larawang satelayt lang ang makita."},
- {r:"sat",t:"#map",en:"The Satellite map shows your municipality in HD from above. Drag and zoom to inspect your area, and toggle the NASA GIBS layer on or off to compare. Tap “Layer info” on the map to read what each layer means.",fil:"Ipinapakita ng mapa ng Satelayt ang inyong bayan sa HD mula sa itaas. I-drag at mag-zoom para suriin ang inyong lugar, at i-on o i-off ang layer ng NASA GIBS para maghambing. Pindutin ang “Impormasyon” sa mapa para malaman ang kahulugan ng bawat layer."},
+ {r:"sat",t:"#map",en:"The Satellite map shows your municipality in HD from above. Drag and zoom to inspect your area, and toggle the NASA GIBS layer on or off to compare.",fil:"Ipinapakita ng mapa ng Satelayt ang inyong bayan sa HD mula sa itaas. I-drag at mag-zoom para suriin ang inyong lugar, at i-on o i-off ang layer ng NASA GIBS para maghambing."},
  {r:"resources",t:"#r-ag",en:"Government agencies, apps, and pest-management guides are listed here.",fil:"Narito ang mga ahensya ng gobyerno, app, at gabay sa pamamahala ng peste."},
  {r:"about",t:"#about h1",en:"Learn why we built SIBOL and who the Wayfinders are.",fil:"Alamin kung bakit namin ginawa ang SIBOL at kung sino ang Wayfinders."},
  {t:"#mktBtn",en:"Tap “Market prices of crops”, right beside the Feedback button, to check the latest crop prices on the Department of Agriculture’s price monitoring page before you plant or sell.",fil:"Pindutin ang “Presyo ng mga pananim”, katabi lang ng Feedback button, para makita ang pinakabagong presyo ng mga pananim sa price monitoring page ng Department of Agriculture bago magtanim o magbenta."},
@@ -777,53 +747,18 @@ function ensoCard(){
  return`<div class="warn wide">🌊 <b>${L("ENSO outlook","ENSO outlook")} (NOAA CPC, ${ENSO.asof}): ${ENSO.label}.</b> ${t} <a href="${ENSO.url}" target="_blank" rel="noopener">${L("Read the NOAA discussion","Basahin ang talakayan ng NOAA")}</a></div>`}
 /* ===== SATELLITE VIEW: HD satellite base map (MapTiler, key hardcoded) + optional NASA GIBS overlay ===== */
 const SAT_API_KEY="5jdAdAEY5i6GTpReMqke";
-const GL={ndvi:["MODIS_Terra_NDVI_8Day",9,"png",["Crop greenness (NDVI, MODIS)","Berde ng pananim (NDVI, MODIS)"]],
- rain:["IMERG_Precipitation_Rate",6,"png",["Rainfall rate (GPM IMERG)","Dami ng ulan (GPM IMERG)"]],
- lst:["MODIS_Terra_Land_Surface_Temp_Day",7,"png",["Daytime ground heat (MODIS)","Init ng lupa sa araw (MODIS)"]]};
-/* info shown in the map's drawer. Each layer: short tab label, what / why / legend / tip, in English and Filipino */
-const INFO={
- about:{tab:["What is GIBS?","Ano ang GIBS?"],title:["What is NASA GIBS?","Ano ang NASA GIBS?"],
-  what:["NASA GIBS (Global Imagery Browse Services) is an open platform that provides fast, daily satellite imagery of Earth. It brings real-time and past visual layers straight into the map, so farmers can monitor field conditions without expensive hardware.","Ang NASA GIBS (Global Imagery Browse Services) ay bukás na platform na nagbibigay ng mabilis at arawang larawang satelayt ng Daigdig. Dinadala nito ang kasalukuyan at nakaraang mga visual na layer sa mapa, kaya masusubaybayan ng mga magsasaka ang kalagayan ng bukid nang hindi bumibili ng mamahaling kagamitan."],
-  tip:["Pick a layer in the dropdown above the map, or tap a tab here, to see it on top of the HD satellite view.","Pumili ng layer sa dropdown sa itaas ng mapa, o pindutin ang tab dito, para makita ito sa ibabaw ng HD na satelayt."]},
- ndvi:{tab:["Greenness","Berde"],title:["Crop Greenness & NDVI (MODIS)","Berde ng Pananim at NDVI (MODIS)"],
-  what:["Measures plant health from how plants reflect near-infrared and red light. Healthy plants reflect a lot of near-infrared light; stressed or sparse plants reflect less.","Sinusukat ang kalusugan ng halaman batay sa pagsalamin nito ng near-infrared at pulang liwanag. Mas maraming near-infrared ang sinasalamin ng malulusog na halaman; mas kaunti ang sa stressed o madalang na halaman."],
-  why:["Works as an early warning system: it can reveal crop stress, water shortage or disease before the signs are visible to the naked eye.","Gumagana bilang maagang babala: maipapakita nito ang stress ng pananim, kakulangan sa tubig o sakit bago pa ito makita ng mata."],
-  leg:[["#2e9e3a","Bright green: dense, healthy crops","Matingkad na berde: siksik at malusog na pananim","Bright green: healthy","Matingkad na berde: malusog"],["#e5b93c","Yellow / orange: stressed, struggling or sparse vegetation","Dilaw / kahel: stressed, nahihirapan o madalang na halaman","Yellow / orange: stressed","Dilaw / kahel: stressed"]],
-  tip:["Pick a date, zoom to your field and compare it with an earlier date to follow vigor trends and spot underperforming areas early.","Pumili ng petsa, mag-zoom sa inyong bukid at ihambing sa mas naunang petsa para makita ang takbo ng sigla at maagang matukoy ang mahihinang bahagi."]},
- rain:{tab:["Rainfall","Ulan"],title:["Rainfall Rate (GPM IMERG)","Dami ng Ulan (GPM IMERG)"],
-  what:["Near-real-time satellite estimates of rainfall rates around the world, updated frequently.","Halos real-time na tantiya ng satelayt sa dami ng ulan sa buong mundo, madalas ina-update."],
-  why:["Shows estimated rain over your area even without a physical rain gauge, helping you avoid over-irrigation and track dry spells or drought. The grid is coarse (about 10 km), so treat it as an area estimate, not a per-plot measurement.","Nagpapakita ng tantiyang ulan sa inyong lugar kahit walang rain gauge, para maiwasan ang labis na patubig at masubaybayan ang tagtuyot. Magaspang ang grid (mga 10 km), kaya tantiya ito sa lugar, hindi sukat sa bawat bukid."],
-  leg:[["#9fd3ff","Light blue: light rain","Mapusyaw na asul: mahinang ulan","Light blue: light rain","Mapusyaw na asul: mahina"],["#4b3fb0","Deeper blue / purple: heavier rain","Mas matingkad na asul / lila: mas malakas na ulan","Dark blue / purple: heavy","Matingkad na asul / lila: malakas"]],
-  tip:["Check the overlay and move the date back a few days to review recent rain. Use it to decide when to run irrigation, and hold off on fertilizer before heavy rain to prevent runoff.","Tingnan ang overlay at ibalik ang petsa nang ilang araw para makita ang kamakailang ulan. Gamitin ito sa pagpapasya kung kailan magpapatubig, at ipagpaliban ang pagpapataba bago ang malakas na ulan para hindi anurin."]},
- lst:{tab:["Ground heat","Init ng lupa"],title:["Daytime Ground Heat / Land Surface Temperature (MODIS)","Init ng Lupa sa Araw / Temperatura ng Ibabaw ng Lupa (MODIS)"],
-  what:["Measures the actual daytime temperature of the land surface (not the air temperature) using MODIS thermal infrared data.","Sinusukat ang aktwal na temperatura ng ibabaw ng lupa sa araw (hindi ang temperatura ng hangin) gamit ang thermal infrared data ng MODIS."],
-  why:["High ground heat together with low soil moisture dries the soil faster and leads to wilting and crop heat stress.","Ang mataas na init ng lupa kasabay ng mababang basa ng lupa ay mas mabilis nagpapatuyo ng lupa at nagdudulot ng pagkalanta at heat stress ng pananim."],
-  leg:[["#4575b4","Blue / purple: cooler ground","Asul / lila: mas malamig na lupa","Blue: cooler","Asul: mas malamig"],["#d7301f","Orange / red: hot ground, higher heat stress","Kahel / pula: mainit na lupa, mas mataas na heat stress","Orange / red: hot","Kahel / pula: mainit"]],
-  tip:["Watch the heat map for hot spots and sharp temperature spikes, then adjust watering cycles or put heat-shock protection in place (shade nets, mulch).","Bantayan ang heat map para sa mga mainit na bahagi at biglaang pagtaas ng temperatura, saka ayusin ang pagdidilig o maglagay ng proteksiyon sa init (shade net, mulch)."]}
-};
-let infoTab="about",lastK="none",infoSeen=false;
-function infoOpen(o){const d=$("#infoDrawer");d.classList.toggle("open",o);d.setAttribute("aria-hidden",String(!o));$("#infoBtn").setAttribute("aria-expanded",String(o));$("#infoBtn").classList.toggle("hide",o);if(o)renderInfo()}
-function renderInfo(){
- const d=$("#infoDrawer");if(!d)return;const li=lang==="fil"?1:0,cur=$("#satl")?$("#satl").value:"none",I=INFO[infoTab];
- $("#infoBtnT").textContent=" "+(GL[cur]?L("Layer info: ","Impormasyon: ")+GL[cur][3][li]:L("What is NASA GIBS?","Ano ang NASA GIBS?"));
- const tabs=["about","ndvi","rain","lst"].map(k=>`<button type="button" role="tab" data-tab="${k}" class="${k===infoTab?"on":""}${k===cur?" live":""}" aria-selected="${k===infoTab}">${INFO[k].tab[li]}</button>`).join("");
- const sec=(h,t)=>`<h4>${h}</h4><p>${t}</p>`;
- let h=`<div class="idh"><div class="idt">${I.title[li]}</div><button type="button" class="idx" id="infoX" aria-label="${L("Close","Isara")}">×</button></div><div class="idtabs" role="tablist">${tabs}</div><div class="idbody">`;
- h+=sec(infoTab==="about"?L("Overview","Pangkalahatang-ideya"):L("What it is","Ano ito"),I.what[li]);
- if(I.why)h+=sec(L("Why it matters","Bakit mahalaga"),I.why[li]);
- if(I.leg)h+=`<h4>${L("How to use & legend","Paano gamitin at legend")}</h4><ul class="idleg">${I.leg.map(x=>`<li><i style="background:${x[0]}"></i>${x[1+li]}</li>`).join("")}</ul>`;
- h+=`<div class="idtip"><b>${L("Actionable tip","Praktikal na tip")}:</b> ${I.tip[li]}</div></div>`;
- d.innerHTML=h;
- const lg=$("#mapLegend");
- if(GL[cur]){lg.hidden=false;lg.innerHTML=`<b>${GL[cur][3][li]}</b>`+INFO[cur].leg.map(x=>`<span><i style="background:${x[0]}"></i>${x[3+li]}</span>`).join("")}else lg.hidden=true}
+const GL={ndvi:["MODIS_Terra_NDVI_8Day",9,"png",["Crop greenness (NDVI, MODIS)","Berde ng pananim (NDVI, MODIS)"],["Greener means healthier, denser plants. 8-day composites, so pick a date at least a week back if it looks blank.","Mas berde, mas malusog at siksik ang halaman. 8-araw na composite, kaya pumili ng petsang isang linggo na ang nakalipas kung blangko."]],
+ rain:["IMERG_Precipitation_Rate",6,"png",["Rainfall rate (GPM IMERG)","Dami ng ulan (GPM IMERG)"],["Rain rate around midday UTC on the chosen date. Blue and purple mean heavier rain.","Dami ng ulan bandang tanghali (UTC) sa napiling petsa. Mas matindi ang ulan sa asul at lila."]],
+ lst:["MODIS_Terra_Land_Surface_Temp_Day",7,"png",["Daytime ground heat (MODIS)","Init ng lupa sa araw (MODIS)"],["Land surface temperature in the day. Warmer colors mean hotter ground and more heat stress.","Temperatura ng lupa sa araw. Mas mainit ang lupa sa mas maiinit na kulay."]]};
 let map=null,mk=null,hdErr=0,gl=null;
 function renderSat(){const e=$("#satl");if(!e)return;const v=e.value||"none";e.innerHTML=`<option value="none">${L("None (HD satellite only)","Wala (HD satelayt lang)")}</option>`+Object.keys(GL).map(k=>`<option value="${k}">${L(GL[k][3][0],GL[k][3][1])}</option>`).join("");e.value=v}
 function satNote(){const n=$("#satn");if(!n)return;
  if(hdErr>=4){n.textContent=L("HD satellite imagery isn’t loading. Check your internet connection and that the API key is allowed for this website.","Hindi na-load ang HD na larawang satelayt. Tingnan ang koneksyon sa internet at kung pinapayagan ang API key sa website na ito.");return}
  const k=$("#satl")&&$("#satl").value;
- n.textContent=L("HD imagery © MapTiler © OpenStreetMap contributors.","HD na larawan © MapTiler © OpenStreetMap contributors.")+(GL[k]?L(" Overlay: NASA GIBS. If it looks blank, try an earlier date."," Overlay: NASA GIBS. Kung blangko, subukan ang mas naunang petsa."):"")}
-function satDraw(){const k0=$("#satl").value;if(k0!==lastK){lastK=k0;infoTab=GL[k0]?k0:"about";if(GL[k0]&&!infoSeen&&innerWidth>700){infoSeen=true;infoOpen(true)}}renderInfo();
- if(!map)return;if(gl){map.removeLayer(gl);gl=null}
+ let t=L("HD satellite imagery © MapTiler © OpenStreetMap contributors. Drag to move, scroll or pinch to zoom. The map centres on the municipality you analyzed.","HD na larawang satelayt © MapTiler © OpenStreetMap contributors. I-drag para gumalaw, mag-scroll o mag-pinch para mag-zoom. Nakasentro ang mapa sa bayang sinuri ninyo.");
+ if(GL[k])t+=" "+L(GL[k][4][0],GL[k][4][1])+L(" Overlay: NASA GIBS. If it is blank, try an earlier date."," Overlay: NASA GIBS. Kung blangko, subukan ang mas naunang petsa.");
+ n.textContent=t}
+function satDraw(){if(!map)return;if(gl){map.removeLayer(gl);gl=null}
  const k=$("#satl").value,d=$("#satd").value;satNote();if(!GL[k]||!d)return;
  const g=GL[k],tm=k==="rain"?d+"T12:00:00Z":d;
  gl=LEAF.tileLayer(`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${g[0]}/default/${tm}/GoogleMapsCompatible_Level${g[1]}/{z}/{y}/{x}.${g[2]}`,{maxNativeZoom:g[1],maxZoom:18,opacity:.7,zIndex:5,attribution:"NASA GIBS"}).addTo(map)}
@@ -835,9 +770,6 @@ function satInit(){
  const dd=$("#satd");if(!dd.value){const x=new Date(Date.now()-2*864e5).toISOString().slice(0,10);dd.value=x;dd.max=x}
  satNote();setTimeout(()=>{map.invalidateSize();satView();satDraw()},60)}
 $("#satl").onchange=satDraw;$("#satd").onchange=satDraw;
-$("#infoBtn").onclick=()=>infoOpen(true);
-$("#infoDrawer").addEventListener("click",e=>{if(e.target.closest("#infoX"))return infoOpen(false);const t=e.target.closest("[data-tab]");if(!t)return;const k=t.dataset.tab;if(k==="about"){infoTab="about";renderInfo()}else{$("#satl").value=k;satDraw()}});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#infoDrawer").classList.contains("open"))infoOpen(false)});
 const DS=[["NASA POWER","https://power.larc.nasa.gov/",["Used live","Gamit na"],["Rainfall, temperature, humidity and root-zone soil wetness for your municipality, plus the last-30-days comparison.","Ulan, temperatura, halumigmig at basa ng lupa sa ugat para sa inyong bayan, kasama ang paghahambing sa nakaraang 30 araw."]],
  ["NASA GIBS (GPM IMERG, MODIS NDVI, MODIS land temperature)","https://worldview.earthdata.nasa.gov/",["Used in Satellite view","Gamit sa Satellite view"],["Optional map overlays for rainfall, crop greenness and ground heat on top of the HD satellite view.","Mga opsyonal na overlay ng mapa para sa ulan, berde ng pananim at init ng lupa sa ibabaw ng HD na satelayt."]],
   ["NASA SMAP","https://www.earthdata.nasa.gov/data/platforms/space-based-platforms/smap",["Linked only","Link lang"],["Soil moisture can be explored in NASA Worldview. SIBOL uses POWER soil wetness in the analysis.","Maaaring tingnan ang soil moisture sa NASA Worldview. Gamit ng SIBOL ang POWER soil wetness sa pagsusuri."]]];
@@ -903,4 +835,3 @@ Object.assign(D.en,{satd2:"HD satellite view of your municipality, with optional
 Object.assign(D.fil,{satd2:"HD na tanaw ng satelayt sa inyong bayan, may opsyonal na layer ng NASA GIBS.",satlb:"Layer ng NASA GIBS",fbth:"Salamat!",fbok:"Matagumpay na naipadala ang feedback. Naibahagi na namin ito sa team ng SIBOL."});
 applyLang();initSlides();Tour.resume();
 </script></body></html>
-
